@@ -1,0 +1,46 @@
+# Rust 编译产物
+/target/
+**/target/
+
+# Cargo 生成的锁文件（通常应该包含在版本控制中，但如果你不想包含可以取消注释）
+# Cargo.lock
+
+# 这些文件由 rustfmt 生成
+**/*.rs.bk
+
+# MSVC Windows 构建
+*.pdb
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 临时文件
+*.tmp
+*.temp
+
+# 日志文件
+*.log
+
+# 备份文件
+*.bak
+*.backup
+
+# 压缩文件（如果不需要版本控制）
+*.zip
+*.rar
+*.7z
+
+# rustup 安装程序
+rustup-init.exe
