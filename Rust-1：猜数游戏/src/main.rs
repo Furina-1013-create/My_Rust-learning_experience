@@ -1,9 +1,10 @@
+/*
 use std::io;               // 引入io模块来处理输入输出
 use std::cmp::Ordering;    // 引入Ordering枚举来比较两个值的大小
 use rand::{self, Rng};     // 引入rand库来生成随机数
 
 // 声明自定义模块
-// mod utils;
+mod u;
 
 fn main() {
     println!("标题：请猜测一个你想猜测的范围之间的随机数");
@@ -68,21 +69,45 @@ fn main() {
     println!("游戏结束");
     
     // 调用测试函数
-    // println!("\n=== 测试函数 ===");
-    // utils::number_test();
+    println!("\n=== 测试函数 ===");
+    u::number_test();
 }
-
-
-
-
-
-
-/*
-Python
-input = input("请输入一个数字：")
-try:
-    number = int(input)
-except ValueError:
-    print("无效的输入")
-    exit()
 */
+
+
+
+// 尝试自己写一下
+use std::io;
+use std::cmp::Ordering;
+use rand::Rng;
+
+fn main() {
+    let secret: i32 = rand::rng().random_range(1..=100);
+    
+    loop {
+        println!("请输入你猜测的数（1~100之间）");
+        let mut guess: String = String::new();
+        io::stdin().read_line(&mut guess).expect("读取失败");
+        
+        let guess: i32 = match guess.trim().parse::<i32>() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("请输入数字");
+                continue;
+            }
+        };
+
+        println!("你猜测的数是：{}", guess);
+
+        match guess.cmp(&secret) {
+            Ordering::Less => println!("猜小了"),
+            Ordering::Greater => println!("猜大了"),
+            Ordering::Equal => {
+                println!("猜对了");
+                break;
+            }
+        }
+    }
+    
+    println!("游戏结束");
+}
